@@ -1,11 +1,10 @@
-$url: "https://res.cloudinary.com/db2nhrkkl/section4-bg.webp";
 $color: #4ee2a3;
 .AuthPage {
   text-align: center;
   min-height: 100vh;
   position: relative;
   background: {
-    image: url($url);
+    image: url("/images/auth_bg.webp");
     position: center;
     size: cover;
   }

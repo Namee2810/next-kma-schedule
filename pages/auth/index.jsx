@@ -31,6 +31,7 @@ export async function getServerSideProps({ req, res }) {
   if (authToken(token))
     return {
       redirect: {
+        source: '/auth',
         destination: '/',
         permanent: false,
       },
