@@ -1,4 +1,5 @@
-const withOffline = require('next-offline')
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
 const nextConfig = {
   env: {
@@ -6,4 +7,10 @@ const nextConfig = {
   },
 }
 
-module.exports = withOffline(nextConfig)
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    runtimeCaching,
+  },
+  nextConfig
+})
