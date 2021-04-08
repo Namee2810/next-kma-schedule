@@ -1,22 +1,11 @@
 import AuthForm from "components/AuthForm";
 import authToken from "modules/authToken";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from "./styles.module.scss";
 
 
 export default function AuthPage(props) {
-  const router = useRouter();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const decoded = authToken(token);
-    if (decoded) {
-      router.push("/")
-    }
-  }, [])
-
   return (
     <>
       <Head>
@@ -35,4 +24,18 @@ export default function AuthPage(props) {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps({ req, res }) {
+  const token = req.cookies.token;
+  if (authToken(token))
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  return {
+    props: {}
+  }
 }

@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 function authToken(token) {
-  let data = "";
+  let data;
   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-    data = decoded
+    data = decoded;
   });
-  return data
+  return data;
 };
 export default authToken;

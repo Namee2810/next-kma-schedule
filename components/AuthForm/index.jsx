@@ -3,6 +3,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import { notification } from 'antd';
 import axios from 'axios';
 import classNames from "classnames";
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
@@ -22,7 +23,8 @@ function AuthForm(props) {
         username: values.username,
         password: values.password
       })
-        .then(res => {
+        .then(async res => {
+          res = res.data;
           switch (res.status) {
             case 400: {
               notification.error({
@@ -37,7 +39,9 @@ function AuthForm(props) {
               notification.success({
                 message: "Đăng nhập thành công 🎉",
               });
-              localStorage.setItem("token", res.data.token);
+              localStorage.setItem("schedule", res.schedule);
+              Cookies.set("token", res.token);
+
               router.push("/");
 
               break;

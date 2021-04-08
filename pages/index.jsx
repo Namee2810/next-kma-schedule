@@ -1,7 +1,9 @@
+import { notification } from "antd";
 import Header from "components/Header";
 import Nav from "components/Nav";
 import Profile from "components/Profile";
 import Schedule from "components/Schedule";
+import Cookies from "js-cookie";
 import authToken from 'modules/authToken';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -9,20 +11,22 @@ import { useEffect, useState } from 'react';
 import styles from "./styles.module.scss";
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter();
   const [student, setStudent] = useState();
-  const [schedule, setSchedule] = useState(0);
-  const [page, setPage] = useState(1);
+  const [schedule, setSchedule] = useState();
+  const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const decoded = authToken(token);
+  useEffect(async () => {
+    const decoded = authToken(localStorage.getItem("schedule"));
     if (decoded) {
       setStudent(decoded.studentProfile);
       setSchedule(decoded.schedule);
     }
     else {
-      router.push("/auth")
+      notification.warn({ message: "Phiên đăng nhập không hợp lệ" });
+      localStorage.removeItem("schedule");
+      Cookies.remove("token");
+      router.push("/auth");
     }
   }, [])
 
@@ -43,4 +47,18 @@ export default function Home() {
       }
     </>
   )
+}
+
+export async function getServerSideProps({ req, res }) {
+  const token = req.cookies.token;
+  if (!authToken(token))
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    }
+  return {
+    props: {}
+  }
 }
