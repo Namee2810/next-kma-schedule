@@ -12,7 +12,6 @@ $color: #4ee2a3;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: AuthPage 0.5s ease-in-out;
 
   &_footer {
     position: absolute;
@@ -22,14 +21,6 @@ $color: #4ee2a3;
       font-weight: bold;
       animation: AuthPage_tag 3s ease 1s infinite;
     }
-  }
-}
-@keyframes AuthPage {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 @keyframes AuthPage_tag {
