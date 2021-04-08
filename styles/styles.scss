@@ -1,0 +1,67 @@
+$color: #4ee2a3;
+a {
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  display: inline-block;
+}
+.button {
+  cursor: pointer;
+  display: block;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+
+  transition: all 0.5s;
+
+  background: #1ed760;
+  color: white;
+  outline: none;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  font: {
+    size: 20px;
+    weight: 500;
+  }
+  a {
+    color: white;
+  }
+}
+.Link {
+  display: block;
+  color: white;
+
+  &:hover {
+    color: white;
+  }
+}
+* {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    &-track {
+      background: #f7f7f7;
+    }
+    &-thumb {
+      background: #aaa;
+    }
+    &-thumb:hover {
+      background: #999;
+    }
+  }
+}
+.MuiSvgIcon-root,
+.icon-text {
+  vertical-align: top;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
