@@ -1,10 +1,5 @@
-const withPWA = require('next-pwa');
-const isProd = process.env.NODE_ENV === "production";
+const withOffline = require('next-offline')
 const nextConfig = {
-  pwa: {
-    dest: 'public',
-    disable: !isProd,
-  },
 }
 
-module.exports = withPWA(nextConfig);
+module.exports = withOffline(nextConfig);
