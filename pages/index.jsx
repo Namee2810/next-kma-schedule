@@ -22,7 +22,6 @@ export default function Home() {
       setSchedule(decoded.schedule);
     }
     else {
-      localStorage.removeItem("token");
       router.push("/auth")
     }
   }, [])
