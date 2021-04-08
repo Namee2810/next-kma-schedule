@@ -11,8 +11,8 @@ import styles from "./styles.module.scss";
 export default function Home() {
   const router = useRouter()
   const [student, setStudent] = useState();
-  const [schedule, setSchedule] = useState();
-  const [page, setPage] = useState(0);
+  const [schedule, setSchedule] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
