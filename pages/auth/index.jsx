@@ -28,14 +28,15 @@ export default function AuthPage(props) {
 
 export async function getServerSideProps({ req, res }) {
   const token = req.cookies.token;
-  if (authToken(token))
-    return {
-      redirect: {
-        source: '/auth',
-        destination: '/',
-        permanent: false,
-      },
-    }
+  if (token)
+    if (authToken(token))
+      return {
+        redirect: {
+          source: '/auth',
+          destination: '/',
+          permanent: false,
+        },
+      }
   return {
     props: {}
   }

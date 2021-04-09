@@ -51,7 +51,14 @@ export default function Home() {
 
 export async function getServerSideProps({ req, res }) {
   const token = req.cookies.token;
-  if (!authToken(token))
+  if (!token)
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    }
+  else if (!authToken(token))
     return {
       redirect: {
         destination: '/auth',

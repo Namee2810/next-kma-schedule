@@ -6,8 +6,7 @@ class MyDocument extends Document {
     return (
       <Html lang="vi">
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta http-equiv="Cotent-Type" content="text/html; charset=utf-8" />
+          <meta httpEquiv="Cotent-Type" content="text/html; charset=utf-8" />
           <meta name="description" content="Thời khóa biểu trực tuyến dành cho sinh viên Học viện Kỹ thuật Mật mã (KMA)" />
 
           <meta property="og:url" content="https://kma.namee.site" key="ogurl" />
