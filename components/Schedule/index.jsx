@@ -1,7 +1,7 @@
 import { Badge, notification, Popover } from 'antd';
 import Calendar from 'components/ui/Calendar';
 import useWidth from 'hooks/useWidth';
-import { toJpeg } from 'html-to-image';
+import { toPng } from 'html-to-image';
 import formatLessons from 'modules/formatLesson';
 import React, { useEffect, useState } from 'react';
 import styles from "./styles.module.scss";
@@ -94,17 +94,22 @@ function Schedule(props) {
   })()));
 
   const handleDownloadImage = () => {
-    const scheduleElement = document.getElementById("calendar");
+    const calendarElement = document.getElementById("calendar");
     const date = document.getElementById("calendar-header-month-value").textContent;
-    toJpeg(scheduleElement)
+
+    calendarElement.style.width = "1920px";
+
+    toPng(calendarElement)
       .then(function (url) {
         var downloadLink = document.createElement("a");
         downloadLink.href = url;
-        downloadLink.download = `${date}.jpeg`;
+        downloadLink.download = `${date}`;
 
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
+
+        calendarElement.style.width = "initial";
       })
   }
 
@@ -155,7 +160,7 @@ function Schedule(props) {
             className={styles.Schedule_download}
             onClick={handleDownloadImage}
           >
-            Tải ảnh (.JPEG)
+            Tải ảnh (.png)
           </div>
       }
     </div>
