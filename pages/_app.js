@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   < Head >
     <link
       rel="preload"
-      href="./images/auth_bg.webp"
+      href="/images/auth_bg.webp"
       as="image"
     />
   </Head >
