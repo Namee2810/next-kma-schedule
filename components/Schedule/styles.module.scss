@@ -118,6 +118,20 @@
       font-weight: bold;
     }
   }
+  &_download {
+    display: inline;
+    background: #1ed760;
+    color: white;
+    padding: 8px 20px;
+
+    font-size: 16px;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    &:hover {
+      background: #1cc958;
+    }
+  }
 }
 
 @keyframes Schedule_item {

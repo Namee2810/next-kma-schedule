@@ -2,6 +2,8 @@
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  background: white;
+  margin-bottom: 10px;
 }
 .calendar-header {
   align-items: center;
@@ -15,8 +17,10 @@
   grid-column: 2;
 }
 .calendar-header-now {
+  font-size: 16px;
+  font-weight: 400;
   color: white;
-  padding: 5px 10px;
+  padding: 8px 20px;
   background: #1ed760;
   transition: all 0.2s ease-in-out;
   white-space: nowrap;
@@ -113,7 +117,7 @@
 .calendar-month-date {
   border-top: 2px solid #ececec;
   white-space: inherit;
-  height: 150px;
+  height: 140px;
   transition: background 0.25s ease-in-out;
   cursor: pointer;
 }

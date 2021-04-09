@@ -41,7 +41,10 @@ export default function Home() {
         <div className={styles.MainPage}>
           <Header student={student} />
           <Nav studentCode={student.studentCode} schedule={schedule} setPage={setPage} />
-          {page === 0 ? <Schedule schedule={schedule} />
+          {page === 0 ?
+            <>
+              <Schedule schedule={schedule} />
+            </>
             : <Profile student={student} schedule={schedule} />}
         </div>
       }

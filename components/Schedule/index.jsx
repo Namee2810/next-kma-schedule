@@ -1,6 +1,7 @@
 import { Badge, Popover } from 'antd';
 import Calendar from 'components/ui/Calendar';
 import useWidth from 'hooks/useWidth';
+import { toJpeg } from 'html-to-image';
 import formatLessons from 'modules/formatLesson';
 import React, { useEffect, useState } from 'react';
 import styles from "./styles.module.scss";
@@ -88,6 +89,21 @@ function Schedule(props) {
     return { date: date.getDate(), month: date.getMonth(), year: date.getFullYear() }
   })()));
 
+  const handleDownloadImage = () => {
+    const scheduleElement = document.getElementById("calendar");
+    const date = document.getElementById("calendar-header-month-value").textContent;
+    toJpeg(scheduleElement)
+      .then(function (url) {
+        var downloadLink = document.createElement("a");
+        downloadLink.href = url;
+        downloadLink.download = `${date}.jpeg`;
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      })
+  }
+
   return (
     <div className={styles.Schedule}>
       <Calendar
@@ -96,7 +112,7 @@ function Schedule(props) {
         dateCellRender={dateCellRender}
         onSelect={onSelect} />
       {
-        !fullscreen && <div className={styles.Schedule_mobile} id="Schedule_mobile">
+        !fullscreen ? <div className={styles.Schedule_mobile} id="Schedule_mobile">
           {subjects.length > 0
             ? <div>
               {subjects.map(item => (
@@ -131,6 +147,12 @@ function Schedule(props) {
               Không có tiết học trong ngày này
             </div>}
         </div>
+          : <div
+            className={styles.Schedule_download}
+            onClick={handleDownloadImage}
+          >
+            Tải ảnh (.JPEG)
+          </div>
       }
     </div>
   );
