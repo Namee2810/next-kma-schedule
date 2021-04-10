@@ -37,7 +37,6 @@ export default function Home() {
     <>
       <Head>
         <title>Thời khóa biểu KMA</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       {
         (student && schedule) &&
