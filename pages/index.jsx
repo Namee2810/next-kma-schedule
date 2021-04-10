@@ -17,7 +17,10 @@ export default function Home() {
   const [page, setPage] = useState(0);
 
   useEffect(async () => {
-    const decoded = authToken(localStorage.getItem("schedule"));
+    const local = localStorage.getItem("schedule");
+    if (!local) return router.push("/auth");
+
+    const decoded = authToken(local);
     if (decoded) {
       setStudent(decoded.studentProfile);
       setSchedule(decoded.schedule);
@@ -52,23 +55,23 @@ export default function Home() {
   )
 }
 
-export async function getServerSideProps({ req, res }) {
-  const token = req.cookies.token;
-  if (!token)
-    return {
-      redirect: {
-        destination: '/auth',
-        permanent: false,
-      },
-    }
-  else if (!authToken(token))
-    return {
-      redirect: {
-        destination: '/auth',
-        permanent: false,
-      },
-    }
-  return {
-    props: {}
-  }
-}
+// export async function getServerSideProps({ req, res }) {
+//   const token = req.cookies.token;
+//   if (!token)
+//     return {
+//       redirect: {
+//         destination: '/auth',
+//         permanent: false,
+//       },
+//     }
+//   else if (!authToken(token))
+//     return {
+//       redirect: {
+//         destination: '/auth',
+//         permanent: false,
+//       },
+//     }
+//   return {
+//     props: {}
+//   }
+// }

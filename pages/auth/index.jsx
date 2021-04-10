@@ -1,11 +1,16 @@
 import AuthForm from "components/AuthForm";
 import authToken from "modules/authToken";
 import Head from "next/head";
-import React from 'react';
+import { useRouter } from "next/router";
+import React, { useEffect } from 'react';
 import styles from "./styles.module.scss";
 
 
 export default function AuthPage(props) {
+  const router = useRouter();
+  useEffect(() => {
+    if (authToken(localStorage.getItem("schedule"))) router.push("/")
+  }, [])
   return (
     <>
       <Head>
@@ -26,18 +31,18 @@ export default function AuthPage(props) {
   );
 }
 
-export async function getServerSideProps({ req, res }) {
-  const token = req.cookies.token;
-  if (token)
-    if (authToken(token))
-      return {
-        redirect: {
-          source: '/auth',
-          destination: '/',
-          permanent: false,
-        },
-      }
-  return {
-    props: {}
-  }
-}
+// export async function getServerSideProps({ req, res }) {
+//   const token = req.cookies.token;
+//   if (token)
+//     if (authToken(token))
+//       return {
+//         redirect: {
+//           source: '/auth',
+//           destination: '/',
+//           permanent: false,
+//         },
+//       }
+//   return {
+//     props: {}
+//   }
+// }

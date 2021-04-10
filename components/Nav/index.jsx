@@ -2,7 +2,6 @@ import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined'
 import EventAvailableOutlinedIcon from '@material-ui/icons/EventAvailableOutlined';
 import FaceIcon from '@material-ui/icons/Face';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import Cookies from 'js-cookie';
 import createIcsString from 'modules/createIcsString';
 import { useRouter } from "next/router";
 import React from 'react';
@@ -26,7 +25,7 @@ function Nav(props) {
   }
   const handleClickSignOut = () => {
     localStorage.removeItem("schedule");
-    Cookies.remove("token");
+    //Cookies.remove("token");
     router.push("/auth")
   }
 
