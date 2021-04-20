@@ -31,6 +31,7 @@ export default function Home() {
       Cookies.remove("token");
       router.push("/auth");
     }
+    if (window.innerWidth < 768) notification.info({ message: "Xoay ngang thiết bị để tải ảnh", duration: 2 })
   }, [])
 
   return (

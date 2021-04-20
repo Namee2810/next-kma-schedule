@@ -1,4 +1,4 @@
-import { Badge, notification, Popover } from 'antd';
+import { Badge, Popover } from 'antd';
 import Calendar from 'components/ui/Calendar';
 import useWidth from 'hooks/useWidth';
 import { toPng } from 'html-to-image';
@@ -75,10 +75,6 @@ function Schedule(props) {
     }
 
   }, [width, fullscreen]);
-
-  useEffect(() => {
-    if (window.innerWidth < 768) notification.info({ message: "Xoay ngang thiết bị để tải ảnh", duration: 2 })
-  }, [])
 
   const onSelect = (value) => {
     setSubjects(getSubjects(value));
