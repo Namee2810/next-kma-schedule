@@ -3,7 +3,6 @@ import Header from "components/Header";
 import Nav from "components/Nav";
 import Profile from "components/Profile";
 import Schedule from "components/Schedule";
-import Cookies from "js-cookie";
 import authToken from 'modules/authToken';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -28,7 +27,6 @@ export default function Home() {
     else {
       notification.warn({ message: "Phiên đăng nhập không hợp lệ" });
       localStorage.removeItem("schedule");
-      Cookies.remove("token");
       router.push("/auth");
     }
     if (window.innerWidth < 768) notification.info({ message: "Xoay ngang thiết bị để tải ảnh", duration: 2 })

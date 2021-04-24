@@ -9,7 +9,10 @@ import styles from "./styles.module.scss";
 export default function AuthPage(props) {
   const router = useRouter();
   useEffect(() => {
-    if (authToken(localStorage.getItem("schedule"))) router.push("/")
+    const local = localStorage.getItem("schedule");
+    if (local) {
+      if (authToken(local)) return router.push("/");
+    }
   }, [])
   return (
     <>
