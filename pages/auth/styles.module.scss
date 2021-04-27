@@ -19,6 +19,7 @@ $color: #4ee2a3;
     color: rgb(180, 180, 180);
     &-tag {
       font-weight: bold;
+      animation: AuthPage_tag 3s ease 1s infinite;
     }
   }
 }
