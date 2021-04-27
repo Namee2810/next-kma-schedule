@@ -1,4 +1,4 @@
-import AuthForm from "components/AuthForm";
+import AuthForm from "components/AuthPage/AuthForm";
 import authToken from "modules/authToken";
 import Head from "next/head";
 import { useRouter } from "next/router";

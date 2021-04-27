@@ -1,10 +1,11 @@
+import { LoadingOutlined } from "@ant-design/icons";
 import FaceIcon from '@material-ui/icons/Face';
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import { notification } from 'antd';
 import axios from 'axios';
 import classNames from "classnames";
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import styles from "./styles.module.scss";
 
@@ -66,17 +67,6 @@ function AuthForm(props) {
         });
     }
   }
-  useEffect(() => {
-    const form_submit = document.getElementById("form_submit");
-    if (checking) {
-      form_submit.classList.add(styles["form-checking"]);
-      form_submit.textContent = "Đang kiểm tra ..."
-    }
-    else {
-      form_submit.classList.remove(styles["form-checking"]);
-      form_submit.textContent = "Đăng nhập"
-    }
-  }, [checking])
 
   return (
     <div className={styles.AuthForm} id="AuthForm">
@@ -97,7 +87,9 @@ function AuthForm(props) {
             {...register("password", { required: true })} />
         </div>
         <div style={{ fontSize: "14px" }}>Nhấn đúp vào ô mật khẩu để ẩn/hiện mật khẩu</div>
-        <button id="form_submit" type="submit" className="button">Đăng nhập</button>
+        <button type="submit" className={classNames("button", { [`${styles["form-checking"]}`]: checking })}>
+          {checking ? <LoadingOutlined /> : "Đăng nhập"}
+        </button>
       </form>
     </div >
   );
