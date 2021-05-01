@@ -1,13 +1,15 @@
 import MenuIcon from '@material-ui/icons/Menu';
 import useWidth from 'hooks/useWidth';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from "./styles.module.scss";
 
 
 function Header(props) {
-  const { student } = props;
+  const student = useSelector(state => state.student);
+
   const width = useWidth();
-  const avatarUrl = `https://ui-avatars.com/api/?name=${student.displayName}&background=random&size=42`;
+  const avatarUrl = `https://ui-avatars.com/api/?name=${student.displayName}&background=random&size=38`;
   const [openNav, setOpenNav] = useState(false);
 
   const handleOpenNav = () => {

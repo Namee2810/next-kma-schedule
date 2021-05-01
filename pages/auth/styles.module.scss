@@ -3,27 +3,14 @@ $color: #4ee2a3;
   text-align: center;
   min-height: 100vh;
   position: relative;
-  background: {
-    image: url("/images/auth_bg.webp");
-    position: center;
-    size: cover;
-  }
+  background: rgba(0, 0, 0, 0.05);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   &_footer {
     position: absolute;
     bottom: 0;
-    color: rgb(180, 180, 180);
-    &-tag {
-      font-weight: bold;
-    }
-  }
-}
-@keyframes AuthPage_tag {
-  to {
-    transform: rotateY(360deg);
+    font-weight: bold;
   }
 }

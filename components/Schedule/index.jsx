@@ -4,10 +4,12 @@ import useWidth from 'hooks/useWidth';
 import { toPng } from 'html-to-image';
 import formatLessons from 'modules/formatLesson';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from "./styles.module.scss";
 
 function Schedule(props) {
-  const { schedule } = props;
+  const schedule = useSelector(state => state.schedule);
+
   const width = useWidth();
   const [fullscreen, setFullscreen] = useState(true);
   const getSubjects = (value) => {
