@@ -67,7 +67,7 @@ $error: rgb(255, 0, 0);
       top: 0;
       left: 0;
       border: 2px solid $color;
-      border-radius: 20px;
+      border-radius: 5px;
       animation: form_checking 1.2s ease-in-out infinite;
     }
     &::after {
@@ -78,7 +78,7 @@ $error: rgb(255, 0, 0);
       top: 0;
       left: 0;
       border: 2px solid $color;
-      border-radius: 20px;
+      border-radius: 5px;
       animation: form_checking 1.2s ease-in-out 0.3s infinite;
     }
     &_icon {
