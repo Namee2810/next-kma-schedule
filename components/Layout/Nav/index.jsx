@@ -2,11 +2,11 @@ import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined'
 import EventAvailableOutlinedIcon from '@material-ui/icons/EventAvailableOutlined';
 import FaceIcon from '@material-ui/icons/Face';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import createIcsString from 'modules/createIcsString';
 import { useRouter } from "next/router";
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SIGN_OUT } from "store/reducer";
+import createIcsString from 'utils/createIcsString';
 import ActiveLink from '../../ActiveLink';
 import styles from "./styles.module.scss";
 
@@ -46,8 +46,7 @@ function Nav(props) {
       title: "Đăng xuất",
       icon: <PowerSettingsNewIcon style={{ fontSize: "34px" }} />,
       onClick() {
-        dispatch(SIGN_OUT({}))
-        localStorage.removeItem("schedule");
+        dispatch(SIGN_OUT())
         router.push("/auth")
       }
     }

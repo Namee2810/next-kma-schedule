@@ -2,9 +2,9 @@ import { Badge, Popover } from 'antd';
 import Calendar from 'components/ui/Calendar';
 import useWidth from 'hooks/useWidth';
 import { toPng } from 'html-to-image';
-import formatLessons from 'modules/formatLesson';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import formatLessons from 'utils/formatLesson';
 import styles from "./styles.module.scss";
 
 function Schedule(props) {

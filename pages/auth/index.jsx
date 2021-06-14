@@ -1,31 +1,35 @@
 import AuthForm from "components/AuthForm";
-import authToken from "modules/authToken";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signInWithToken } from "store/reducer";
 import styles from "./styles.module.scss";
 
 
 export default function AuthPage(props) {
   const router = useRouter();
-  const sign_in = useSelector(state => state.sign_in);
+  const dispatch = useDispatch();
+  const signed = useSelector(state => state.signed);
 
   useEffect(() => {
-    if (sign_in) return router.push("/");
+    if (signed) return router.push("/");
 
-    const local = localStorage.getItem("schedule");
-    if (local) {
-      if (authToken(local)) return router.push("/");
-    }
+    const token = localStorage.getItem("token");
+    if (token) dispatch(signInWithToken(token))
   }, [])
+
+  useEffect(() => {
+    if (signed) router.push("/")
+  }, [signed])
+
   return (
     <>
       <Head>
         <title>KMA | Đăng nhập</title>
       </Head>
       {
-        !sign_in &&
+        !signed &&
         <div className={styles.AuthPage} id="AuthPage">
           <AuthForm />
           <div className={styles.AuthPage_footer}>

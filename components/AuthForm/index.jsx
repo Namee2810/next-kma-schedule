@@ -1,71 +1,27 @@
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 import FaceIcon from '@material-ui/icons/Face';
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
-import { notification } from 'antd';
-import axios from 'axios';
 import classNames from "classnames";
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../../store/reducer";
 import styles from "./styles.module.scss";
 
 function AuthForm(props) {
   const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const dispatch = useDispatch();
+  const { signInLoading, signed } = useSelector(state => state)
 
-  const [checking, setChecking] = useState(false);
   const [showPass, setShowPass] = useState(false);
 
   const onSubmit = async values => {
-    if (!checking) {
-      setChecking(true);
-      await axios.post("https://heroku-kma-schedule-api.herokuapp.com/login", {
-        username: values.username,
-        password: values.password
-      })
-        .then(async res => {
-          res = res.data;
-          switch (res.status) {
-            case 400: {
-              notification.error({
-                message: "Mã sinh viên hoặc mật khẩu không chính xác 😢",
-              });
-              setTimeout(() => {
-                setChecking(false);
-              }, 500);
-              break
-            }
-            case 200: {
-              notification.success({
-                message: "Đăng nhập thành công 🎉",
-              });
-              localStorage.setItem("schedule", res.schedule);
-              //Cookies.set("token", res.token);
-
-              router.push("/");
-
-              break;
-            }
-            default: {
-              notification.error({
-                message: "Đã xảy ra lỗi, vui lòng thử lại sau 😢",
-              });
-              setTimeout(() => {
-                setChecking(false);
-              }, 500);
-            }
-          }
-        })
-        .catch(err => {
-          notification.error({
-            message: "Đã xảy ra lỗi, vui lòng thử lại sau 😢 !",
-          });
-          console.log(err)
-          setTimeout(() => {
-            setChecking(false);
-          }, 500);
-        });
-    }
+    dispatch(signIn({
+      username: values.username,
+      password: values.password
+    }))
   }
 
   return (
@@ -89,8 +45,8 @@ function AuthForm(props) {
         </div>
         <div style={{ fontSize: "14px" }}>Nhấn đúp vào ô mật khẩu để ẩn/hiện mật khẩu</div>
         <button id="form_submit" type="submit"
-          className={classNames("button", { [`${styles.form_checking}`]: checking })}>
-          {checking ? <Loading3QuartersOutlined className={styles.form_checking_icon} /> : "Đăng nhập"}
+          className={classNames("button", { [`${styles.form_checking}`]: signInLoading })}>
+          {signInLoading ? <Loading3QuartersOutlined className={styles.form_checking_icon} /> : "Đăng nhập"}
         </button>
       </form>
     </div >
