@@ -17,7 +17,9 @@ function Layout(props) {
 
     const token = localStorage.getItem("token");
     if (!token) return router.push("/auth");
-    dispatch(signInWithToken(token));
+    dispatch(signInWithToken(token)).then(res => {
+      if (!res.payload) router.push("/auth")
+    })
   }, [])
   return (
     signed &&
