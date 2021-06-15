@@ -59,6 +59,7 @@ $error: rgb(255, 0, 0);
   &_checking {
     position: relative;
     background: $color !important;
+    cursor: not-allowed;
     &::before {
       position: absolute;
       content: "";

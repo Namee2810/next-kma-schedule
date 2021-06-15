@@ -2,7 +2,6 @@ import { Loading3QuartersOutlined } from "@ant-design/icons";
 import FaceIcon from '@material-ui/icons/Face';
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import classNames from "classnames";
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,14 +9,14 @@ import { signIn } from "../../store/reducer";
 import styles from "./styles.module.scss";
 
 function AuthForm(props) {
-  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch = useDispatch();
-  const { signInLoading, signed } = useSelector(state => state)
+  const signInLoading = useSelector(state => state.signInLoading)
 
   const [showPass, setShowPass] = useState(false);
 
   const onSubmit = async values => {
+    if (signInLoading) return;
     dispatch(signIn({
       username: values.username,
       password: values.password
