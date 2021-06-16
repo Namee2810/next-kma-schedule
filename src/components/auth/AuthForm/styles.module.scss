@@ -1,6 +1,6 @@
 $color: #1ed760;
 $error: rgb(255, 0, 0);
-.AuthForm {
+.container {
   background: white;
   border-radius: 5px;
   padding: 100px 50px;
@@ -56,7 +56,7 @@ $error: rgb(255, 0, 0);
       background: rgb(0, 0, 0, 0.5);
     }
   }
-  &_checking {
+  &_loading {
     position: relative;
     background: $color !important;
     cursor: not-allowed;
@@ -69,7 +69,7 @@ $error: rgb(255, 0, 0);
       left: 0;
       border: 2px solid $color;
       border-radius: 5px;
-      animation: form_checking 1.2s ease-in-out infinite;
+      animation: form_loading 1.2s ease-in-out infinite;
     }
     &::after {
       position: absolute;
@@ -80,10 +80,10 @@ $error: rgb(255, 0, 0);
       left: 0;
       border: 2px solid $color;
       border-radius: 5px;
-      animation: form_checking 1.2s ease-in-out 0.3s infinite;
+      animation: form_loading 1.2s ease-in-out 0.3s infinite;
     }
-    &_icon {
-      animation: form_checking_icon 1s ease-out infinite;
+    &-icon {
+      animation: form_loading-icon 1s ease-out infinite;
     }
   }
 }
@@ -95,13 +95,13 @@ $error: rgb(255, 0, 0);
     opacity: 1;
   }
 }
-@keyframes form_checking {
+@keyframes form_loading {
   to {
     transform: scale(1.1, 1.3);
     opacity: 0;
   }
 }
-@keyframes form_checking_icon {
+@keyframes form_loading-icon {
   75% {
     transform: rotateZ(420deg);
   }

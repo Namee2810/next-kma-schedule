@@ -5,8 +5,7 @@ import FaceIcon from '@material-ui/icons/Face';
 import WcIcon from '@material-ui/icons/Wc';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import { Progress } from 'antd';
-import Layout from "components/Layout";
-import Head from "next/head";
+import HomeLayout from "layouts/HomeLayout";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from "./styles.module.scss";
@@ -44,43 +43,40 @@ function Profile(props) {
   }, [schedule])
 
   return (
-    <Layout>
-      <Head>
-        <title>KMA | Thông tin sinh viên</title>
-      </Head>
-      <div className={styles.Profile}>
+    <HomeLayout title="KMA | Thông tin sinh viên">
+      <div className={styles.container}>
         <table>
           <tbody>
             <tr>
-              <th className={styles["Profile_card-key"]}><FaceIcon /> Họ tên</th>
-              <th className={styles["Profile_card-value"]}>{studentProfile.displayName}</th>
+              <th className={styles.card_key}><FaceIcon /> Họ tên</th>
+              <th className={styles.card_value}>{studentProfile.displayName}</th>
             </tr>
             <tr>
-              <th className={styles["Profile_card-key"]}><WcIcon /> Giới tính</th>
-              <th className={styles["Profile_card-value"]}>{studentProfile.gender}</th>
+              <th className={styles.card_key}><WcIcon /> Giới tính</th>
+              <th className={styles.card_value}>{studentProfile.gender}</th>
             </tr>
             <tr>
-              <th className={styles["Profile_card-key"]}><CakeIcon /> Ngày sinh</th>
-              <th className={styles["Profile_card-value"]}>{studentProfile.birthday}</th>
+              <th className={styles.card_key}><CakeIcon /> Ngày sinh</th>
+              <th className={styles.card_value}>{studentProfile.birthday}</th>
             </tr>
             <tr>
-              <th className={styles["Profile_card-key"]}><AssignmentIndIcon /> Mã sinh viên</th>
-              <th className={styles["Profile_card-value"]}>{studentProfile.studentCode}</th>
+              <th className={styles.card_key}><AssignmentIndIcon /> Mã sinh viên</th>
+              <th className={styles.card_value}>{studentProfile.studentCode}</th>
             </tr>
             <tr>
-              <th className={styles["Profile_card-key"]}><WorkOutlineIcon /> Chuyên ngành</th>
-              <th className={styles["Profile_card-value"]}>{majors}</th>
+              <th className={styles.card_key}><WorkOutlineIcon /> Chuyên ngành</th>
+              <th className={styles.card_value}>{majors}</th>
             </tr>
             <tr>
-              <th className={styles["Profile_card-key"]}><CheckIcon /> Tiến độ chương trình</th>
-              <th className={styles["Profile_card-value"]}>
+              <th className={styles.card_key}><CheckIcon /> Tiến độ chương trình</th>
+              <th className={styles.card_value}>
                 <Progress type="circle" percent={progress} strokeColor={"#1ED760"} />
               </th>
             </tr>
           </tbody>
         </table>
       </div>
-    </Layout >
+    </HomeLayout >
   );
 }
 

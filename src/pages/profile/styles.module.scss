@@ -1,4 +1,4 @@
-.Profile {
+.container {
   transition: all 0.2s;
   min-height: 0;
 
@@ -42,16 +42,15 @@
       }
     }
   }
-
-  &_card {
-    &-key {
-      font: {
-        weight: bold;
-      }
-      color: #1ed760;
+}
+.card {
+  &_key {
+    font: {
+      weight: bold;
     }
-    &-value {
-      font-weight: 500;
-    }
+    color: #1ed760;
+  }
+  &_value {
+    font-weight: 500;
   }
 }

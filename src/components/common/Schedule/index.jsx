@@ -1,5 +1,5 @@
 import { Badge, Popover } from 'antd';
-import Calendar from 'components/ui/Calendar';
+import Calendar from 'components/common/Calendar';
 import useWidth from 'hooks/useWidth';
 import { toPng } from 'html-to-image';
 import React, { useEffect, useState } from 'react';

@@ -1,4 +1,4 @@
-import AuthForm from "components/AuthForm";
+import AuthForm from "components/auth/AuthForm";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from 'react';
@@ -30,10 +30,10 @@ export default function AuthPage(props) {
       </Head>
       {
         !signed &&
-        <div className={styles.AuthPage} id="AuthPage">
+        <div className={styles.container} id="AuthPage">
           <AuthForm />
-          <div className={styles.AuthPage_footer}>
-            <span style={{ color: "red" }}>KMA</span> SCHEDULE
+          <div className={styles.footer}>
+            <span className="text-red">KMA</span> SCHEDULE
           </div>
         </div>
       }

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +7,7 @@ import Header from './Header';
 import Nav from './Nav';
 import styles from "./styles.module.scss";
 
-function Layout(props) {
+function HomeLayout(props) {
   const router = useRouter();
 
   const signed = useSelector(state => state.signed);
@@ -23,7 +24,10 @@ function Layout(props) {
   }, [])
   return (
     signed &&
-    <div className={styles.Layout}>
+    <div className={styles.container}>
+      <Head>
+        <title>{props.title}</title>
+      </Head>
       <Header />
       <Nav />
       {props.children}
@@ -31,4 +35,4 @@ function Layout(props) {
   );
 }
 
-export default Layout;
+export default HomeLayout;

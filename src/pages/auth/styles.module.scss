@@ -1,5 +1,5 @@
 $color: #4ee2a3;
-.AuthPage {
+.container {
   text-align: center;
   min-height: 100vh;
   position: relative;
@@ -7,10 +7,9 @@ $color: #4ee2a3;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &_footer {
-    position: absolute;
-    bottom: 0;
-    font-weight: bold;
-  }
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  font-weight: bold;
 }

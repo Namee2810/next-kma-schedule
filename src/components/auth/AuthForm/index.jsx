@@ -5,7 +5,7 @@ import classNames from "classnames";
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../../store/reducer";
+import { signIn } from "store/reducer";
 import styles from "./styles.module.scss";
 
 function AuthForm(props) {
@@ -24,28 +24,28 @@ function AuthForm(props) {
   }
 
   return (
-    <div className={styles.AuthForm} id="AuthForm">
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form} autoComplete="off">
-        <div className={classNames(styles.form_field, { [`${styles["form_field-error"]}`]: errors?.username })}>
-          <FaceIcon className={styles["form_field-icon"]} style={{ fontSize: "30px" }} />
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <div className={classNames(styles.form_field, { [styles["form_field-error"]]: errors?.username })}>
+          <FaceIcon className={[styles["form_field-icon"], "text-30"]} />
           <input type="text"
             maxLength={10}
             className={styles.form_input}
             placeholder="Mã sinh viên"
             {...register('username', { required: true })} />
         </div>
-        <div className={classNames(styles.form_field, { [`${styles["form_field-error"]}`]: errors?.password })}>
-          <LockOutlinedIcon className={styles["form_field-icon"]} style={{ fontSize: "30px" }} />
+        <div className={classNames(styles.form_field, { [styles["form_field-error"]]: errors?.password })}>
+          <LockOutlinedIcon className={[styles["form_field-icon"], "text-30"]} />
           <input type={showPass ? "text" : "password"}
             className={styles.form_input}
             placeholder="Mật khẩu"
             onDoubleClick={() => setShowPass(!showPass)}
             {...register("password", { required: true })} />
         </div>
-        <div style={{ fontSize: "14px" }}>Nhấn đúp vào ô mật khẩu để ẩn/hiện mật khẩu</div>
+        <div className="text-14">Nhấn đúp vào ô mật khẩu để ẩn/hiện mật khẩu</div>
         <button id="form_submit" type="submit"
-          className={classNames("button", { [`${styles.form_checking}`]: signInLoading })}>
-          {signInLoading ? <Loading3QuartersOutlined className={styles.form_checking_icon} /> : "Đăng nhập"}
+          className={classNames("button", { [styles.form_loading]: signInLoading })}>
+          {signInLoading ? <Loading3QuartersOutlined className={styles["form_loading-icon"]} /> : "Đăng nhập"}
         </button>
       </form>
     </div >
