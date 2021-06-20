@@ -3,8 +3,9 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import MenuIcon from '@material-ui/icons/Menu';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import { Tooltip } from 'antd';
+import { message, Tooltip } from 'antd';
 import useOnClickOutside from 'hooks/useOnClickOutside';
+import useWidth from 'hooks/useWidth';
 import { toPng } from 'html-to-image';
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
@@ -20,6 +21,7 @@ function getTransformStyle(idx, max) {
 }
 
 export default function MenuCircle({ schedule, setDate }) {
+  const width = useWidth();
   const ref = useRef();
   useOnClickOutside(ref, () => {
     if (open) setOpen(false)
@@ -30,6 +32,7 @@ export default function MenuCircle({ schedule, setDate }) {
     title: "Chụp ảnh",
     icon: <PhotoCameraIcon />,
     onClick() {
+      if (width <= 768) return message.info("Xoay ngang thiết bị hoặc dùng thiết bị lớn hơn")
       const calendarElement = document.getElementsByClassName("ant-picker-calendar")[0];
       const date = document.getElementById("calendar-date").textContent;
 

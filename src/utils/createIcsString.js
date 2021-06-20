@@ -13,7 +13,7 @@ const createIcsString = (schedule) => {
     day = `${day[1]}/${day[0]}/${day[2]}`;
 
     let start = formatDate(new Date(`${day} ${startTime[Math.floor(item.lesson[0] / 3)]}`)),
-      end = formatDate(new Date(`${day} ${endTime[end / 3 - 1]}`));
+      end = formatDate(new Date(`${day} ${endTime[item.lesson[2] / 3 - 1]}`));
 
     let summary = item.subjectName, location = item.room,
       description = `Lớp: ${item.className}\nTiết: ${item.room}\nGiáo viên: ${item.teacher}`;
