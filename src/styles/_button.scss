@@ -1,0 +1,21 @@
+.button {
+  cursor: pointer;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+
+  transition: all 0.5s;
+
+  background: #1ed760;
+  color: white;
+  outline: none;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  font: {
+    size: 20px;
+    weight: 500;
+  }
+}

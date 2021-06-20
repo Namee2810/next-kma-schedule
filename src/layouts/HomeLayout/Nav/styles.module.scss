@@ -1,35 +1,15 @@
-.Nav {
-  position: fixed;
-  top: 60px;
-  height: calc(100vh - 60px);
-  background: white;
+@use "styles/constants" as *;
 
-  grid-column: 1;
-
+.nav {
+  grid-area: nav;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
+  background: white;
   border-right: 1px solid #dadce0;
-  transition: width 0.2s ease-in-out;
-  z-index: 1;
+  z-index: 998;
   box-shadow: 0 0px 21px rgb(30, 215, 96, 0.2);
-  overflow-y: auto;
-
-  @media (max-width: 576px) {
-    width: 0;
-  }
-  @media (min-width: 577px) {
-    width: 56px !important;
-  }
-
-  &:hover {
-    width: 220px !important;
-
-    & .Nav_footer {
-      opacity: 1;
-    }
-  }
+  transition: width 0.2s ease-in-out;
 
   &_item {
     display: flex;
@@ -45,29 +25,43 @@
       weight: 500;
     }
     transition: all 0.25s;
+
     &:hover {
       background: rgb(235, 235, 235);
     }
 
     &_active {
-      border-left-color: #1ed760;
-      color: #1ed760 !important;
+      border-left-color: $color-primary;
+      color: $color-primary !important;
     }
     &-title {
       padding-left: 12px;
     }
   }
 
-  &_footer {
-    opacity: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    font: {
-      weight: bold;
+  @media (min-width: $sm) {
+    width: 100%;
+    &:hover {
+      width: 220px;
     }
-    transition: all 0.2s;
-    & > a {
-      color: #1ed760;
+  }
+
+  @media (max-width: $sm) {
+    border-right: 0;
+    flex-direction: row;
+    justify-content: center;
+
+    &_item {
+      border-left: 0;
+      svg {
+        font-size: 28px !important;
+      }
+      &-title {
+        display: none;
+      }
+      &_active {
+        border-bottom: 3px solid $color-primary;
+      }
     }
   }
 }

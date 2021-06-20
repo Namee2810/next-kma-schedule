@@ -30,7 +30,9 @@ function HomeLayout(props) {
       </Head>
       <Header />
       <Nav />
-      {props.children}
+      <div className={styles.main}>
+        {props.children}
+      </div>
     </div>
   );
 }

@@ -1,19 +1,24 @@
-import formatLessons from "./formatLesson";
+import { endTime, startTime } from "./getTimeFromLessons";
+
 const BEGIN_CALENDAR = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:KMA Schedule (kma.namee.site)\r\nMETHOD:PUBLISH\r\nCALSCALE:GREGORIAN\r\n";
 const END_CALENDAR = "END:VCALENDAR"
 
-var EVENTS = "";
 
 const createIcsString = (schedule) => {
-  let uid = 0;
+  let uid = 0, EVENTS = "";
+  let today = formatDate(new Date());
+
   schedule.forEach(item => {
-    let today = formatDate(new Date());
-    let [from, to] = formatLessons(item.lesson), day = item.day.split("/");
+    let day = item.day;
     day = `${day[1]}/${day[0]}/${day[2]}`;
-    let begin = formatDate(new Date(`${day} ${from.replace("h", ":")}`)), end = formatDate(new Date(`${day} ${to.replace("h", ":")}`)),
-      summary = item.subjectName, location = item.room,
+
+    let start = formatDate(new Date(`${day} ${startTime[Math.floor(item.lesson[0] / 3)]}`)),
+      end = formatDate(new Date(`${day} ${endTime[end / 3 - 1]}`));
+
+    let summary = item.subjectName, location = item.room,
       description = `Lớp: ${item.className}\nTiết: ${item.room}\nGiáo viên: ${item.teacher}`;
-    let event = `BEGIN:VEVENT\r\nUID:kma_schedule ${uid}\r\nDTSTAMP:${today}\r\nDTSTART:${begin}\r\nDTEND:${end}\r\nSUMMARY:${summary}\r\nLOCATION:${location}\r\nDESCRIPTION:${description}\r\nEND:VEVENT\r\n`
+
+    let event = `BEGIN:VEVENT\r\nUID:kma_schedule ${uid}\r\nDTSTAMP:${today}\r\nDTSTART:${start}\r\nDTEND:${end}\r\nSUMMARY:${summary}\r\nLOCATION:${location}\r\nDESCRIPTION:${description}\r\nEND:VEVENT\r\n`
     EVENTS += event;
     uid++;
   });

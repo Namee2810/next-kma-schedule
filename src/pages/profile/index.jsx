@@ -19,12 +19,10 @@ function getMajorsName(prefix) {
   }
 }
 function getProgress(schedule) {
-  let passed = 0;
+  let passed = 0, currentTime = new Date().getTime();
   schedule.forEach(item => {
-    let date = item.day.split("/").map(i => +i);
-    date = new Date(date[2], date[1] - 1, date[0]).getTime();
-    const now = new Date().getTime();
-    if (now - date > 0) passed++;
+    let time = new Date(item.day[2], item.day[1] - 1, item.day[0]).getTime()
+    if (currentTime - time > 0) passed++;
   })
   return ((passed / schedule.length) * 100).toFixed(0);
 }
@@ -44,32 +42,32 @@ function Profile(props) {
 
   return (
     <HomeLayout title="KMA | Thông tin sinh viên">
-      <div className={styles.container}>
+      <div className={[styles.container, "fade"].join(" ")}>
         <table>
           <tbody>
             <tr>
-              <th className={styles.card_key}><FaceIcon /> Họ tên</th>
-              <th className={styles.card_value}>{studentProfile.displayName}</th>
+              <th className="text-primary font-700"><FaceIcon /> Họ tên</th>
+              <th className="font-500">{studentProfile.displayName}</th>
             </tr>
             <tr>
-              <th className={styles.card_key}><WcIcon /> Giới tính</th>
-              <th className={styles.card_value}>{studentProfile.gender}</th>
+              <th className="text-primary font-700"><WcIcon /> Giới tính</th>
+              <th className="font-500">{studentProfile.gender}</th>
             </tr>
             <tr>
-              <th className={styles.card_key}><CakeIcon /> Ngày sinh</th>
-              <th className={styles.card_value}>{studentProfile.birthday}</th>
+              <th className="text-primary font-700"><CakeIcon /> Ngày sinh</th>
+              <th className="font-500">{studentProfile.birthday}</th>
             </tr>
             <tr>
-              <th className={styles.card_key}><AssignmentIndIcon /> Mã sinh viên</th>
-              <th className={styles.card_value}>{studentProfile.studentCode}</th>
+              <th className="text-primary font-700"><AssignmentIndIcon /> Mã sinh viên</th>
+              <th className="font-500">{studentProfile.studentCode}</th>
             </tr>
             <tr>
-              <th className={styles.card_key}><WorkOutlineIcon /> Chuyên ngành</th>
-              <th className={styles.card_value}>{majors}</th>
+              <th className="text-primary font-700"><WorkOutlineIcon /> Chuyên ngành</th>
+              <th className="font-500">{majors}</th>
             </tr>
             <tr>
-              <th className={styles.card_key}><CheckIcon /> Tiến độ chương trình</th>
-              <th className={styles.card_value}>
+              <th className="text-primary font-700"><CheckIcon /> Tiến độ chương trình</th>
+              <th className="font-500">
                 <Progress type="circle" percent={progress} strokeColor={"#1ED760"} />
               </th>
             </tr>

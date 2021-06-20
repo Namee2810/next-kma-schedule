@@ -1,0 +1,45 @@
+@use "styles/constants" as *;
+
+$right: 20px;
+$bottom: 20px;
+
+.menu {
+  position: fixed;
+  right: $right;
+  bottom: $bottom;
+  padding: 10px;
+
+  color: #000;
+  background: #fff;
+  box-shadow: 0 2.5px 5.4px rgba(0, 0, 0, 0.081), 0 8.5px 18.1px rgba(0, 0, 0, 0.119), 0 38px 81px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  z-index: 997;
+  transition: all 0.25s;
+
+  &_item {
+    position: fixed;
+    right: $right;
+    bottom: $bottom;
+    opacity: 0;
+    z-index: 996;
+
+    transition: all 0.25s;
+
+    padding: 8px;
+    background: #fff;
+    box-shadow: 0 2.5px 5.4px rgba(0, 0, 0, 0.081), 0 8.5px 18.1px rgba(0, 0, 0, 0.119), 0 38px 81px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+
+    svg {
+      font-size: 20px;
+    }
+  }
+}
+@media (max-width: $sm) {
+  .menu {
+    bottom: $bottom + 40px;
+    &_item {
+      bottom: $bottom + 40px;
+    }
+  }
+}
