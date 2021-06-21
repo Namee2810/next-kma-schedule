@@ -59,8 +59,8 @@ export default function Schedule({ schedule, date, setDate }) {
   const dateCellRender = (value) => {
     const subjects = getSubjects(value.get("date"), value.get("month"), value.get("year"))
     if (subjects) {
-      return fullScreen ? subjects.map(item =>
-        <div key={item.subjectCode + item.day} className="text-center">
+      return fullScreen ? subjects.map((item, idx) =>
+        <div key={item.subjectCode + idx} className="text-center">
           <Popover placement="right" trigger="hover"
             title={<b>{item.subjectName} ({item.subjectCode})</b>}
             content={<>
@@ -97,7 +97,7 @@ export default function Schedule({ schedule, date, setDate }) {
         fullscreen={fullScreen}
       />
       {!fullScreen && (subjectsToday.length ? <div className="my-16 d-flex flex-col align-center">
-        {subjectsToday.map((item, idx) => <div className={styles.calendar_item} key={idx}>
+        {subjectsToday.map((item, idx) => <div className={[styles.calendar_item, "fade"].join(" ")} key={item.subjectCode + idx}>
           <div className={styles.calendar_item_time}>
             <div>
               <div>{item.day.join("/")}</div>
