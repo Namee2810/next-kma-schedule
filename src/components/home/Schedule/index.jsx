@@ -62,7 +62,7 @@ export default function Schedule({ schedule, date, setDate }) {
     const subjects = getSubjects(value)
     if (subjects) {
       return fullScreen ? subjects.map((item, idx) =>
-        <div key={item.subjectCode + item.day[0]} className="text-center">
+        <div key={item.subjectCode + item.day[0]} className="text-center fade">
           <Popover placement="right" trigger="hover"
             title={<b>{item.subjectName} ({item.subjectCode})</b>}
             content={<>
