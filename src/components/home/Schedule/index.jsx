@@ -13,7 +13,9 @@ export default function Schedule({ schedule, date, setDate }) {
   const [fullScreen, setFullScreen] = useState(width > 768);
   const [subjectsToday, setSubjectsToday] = useState([]);
 
-
+  useEffect(() => {
+    setSubjectsToday(getSubjects(date))
+  }, [])
   useEffect(() => {
     if (width <= 768) {
       if (fullScreen) setFullScreen(false);
@@ -35,12 +37,12 @@ export default function Schedule({ schedule, date, setDate }) {
   const handleSelect = (value) => {
     setDate(value)
     if (mode === "year") setMode("month")
-    const subjects = getSubjects(value.get("date"), value.get("month"), value.get("year"))
+    const subjects = getSubjects(value)
     setSubjectsToday(subjects);
   }
 
-  const getSubjects = (date, month, year) => {
-    return schedule.filter(item => item.day?.[0] === date && item.day?.[1] === month + 1 && item.day?.[2] === year)
+  const getSubjects = (value) => {
+    return schedule.filter(item => item.day?.[0] === value.get("date") && item.day?.[1] === value.get("month") + 1 && item.day?.[2] === value.get("year"))
   }
 
   const headerRender = () => {
@@ -57,10 +59,10 @@ export default function Schedule({ schedule, date, setDate }) {
     )
   }
   const dateCellRender = (value) => {
-    const subjects = getSubjects(value.get("date"), value.get("month"), value.get("year"))
+    const subjects = getSubjects(value)
     if (subjects) {
       return fullScreen ? subjects.map((item, idx) =>
-        <div key={item.subjectCode + idx} className="text-center">
+        <div key={item.subjectCode + item.day[0]} className="text-center">
           <Popover placement="right" trigger="hover"
             title={<b>{item.subjectName} ({item.subjectCode})</b>}
             content={<>
@@ -97,30 +99,35 @@ export default function Schedule({ schedule, date, setDate }) {
         fullscreen={fullScreen}
       />
       {!fullScreen && (subjectsToday.length ? <div className="my-16 d-flex flex-col align-center">
-        {subjectsToday.map((item, idx) => <div className={[styles.calendar_item, "fade"].join(" ")} key={item.subjectCode + idx}>
-          <div className={styles.calendar_item_time}>
-            <div>
-              <div>{item.day.join("/")}</div>
-              <div>{getTimeFromLesson([item.lesson[0], item.lesson[2]])}</div>
+        {subjectsToday.map((item, idx) =>
+          <div
+            key={item.subjectCode + item.day[0]}
+            style={{ animationDelay: idx * 0.15 + "s" }}
+            className={[styles.calendar_item, "fadeToLeft"].join(" ")}
+          >
+            <div className={styles.calendar_item_time}>
+              <div>
+                <div>{item.day.join("/")}</div>
+                <div>{getTimeFromLesson([item.lesson[0], item.lesson[2]])}</div>
+              </div>
             </div>
-          </div>
-          <div className={styles.calendar_item_detail}>
-            <div>
-              <div className={styles.calendar_item_key}>Môn học</div>
-              <div className={styles.calendar_item_value}>{item.subjectName}</div>
+            <div className={styles.calendar_item_detail}>
+              <div>
+                <div className={styles.calendar_item_key}>Môn học</div>
+                <div className={styles.calendar_item_value}>{item.subjectName}</div>
+              </div>
+              <div>
+                <div className={styles.calendar_item_key}>Phòng</div>
+                <div className={styles.calendar_item_value}>{item.room ? item.room : "-"}</div>
+              </div>
+              <div>
+                <div className={styles.calendar_item_key}>Giáo viên</div>
+                <div className={styles.calendar_item_value}>{item.teacher ? item.teacher : "-"}</div>
+              </div>
             </div>
-            <div>
-              <div className={styles.calendar_item_key}>Phòng</div>
-              <div className={styles.calendar_item_value}>{item.room ? item.room : "-"}</div>
-            </div>
-            <div>
-              <div className={styles.calendar_item_key}>Giáo viên</div>
-              <div className={styles.calendar_item_value}>{item.teacher ? item.teacher : "-"}</div>
-            </div>
-          </div>
-        </div>)}
+          </div>)}
       </div>
-        : <div className="my-16"><span className="background-red text-white border-r20 p-8">Không có tiết học trong ngày này</span></div>)}
+        : <div className="my-16"><span className="background-red text-white border-r20 p-8 fade">Không có tiết học trong ngày này</span></div>)}
     </>
   )
 }
