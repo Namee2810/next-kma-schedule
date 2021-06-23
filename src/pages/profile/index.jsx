@@ -122,7 +122,7 @@ function Profile(props) {
           </div>
           <div className={["background-white px-24 py-16 border-r8 box-shadow", styles.chart].join(" ")}>
             <div className="font-700 mb-8">Học phần đã đăng kí</div>
-            <Bar data={chartData} height={400} width={800} options={chartOptions} />
+            <Bar data={chartData} options={chartOptions} />
           </div>
         </div>
       </div>
