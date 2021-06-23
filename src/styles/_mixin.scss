@@ -10,12 +10,31 @@
 .justify-center {
   justify-content: center;
 }
+.justify-between {
+  justify-content: space-between;
+}
 .align-center {
   align-items: center;
+}
+.align-start {
+  align-items: start;
 }
 .background-red {
   background-color: #f00;
 }
+.background-white {
+  background-color: #fff;
+}
+.background-grey {
+  background-color: #f7f7f7;
+}
+.border-r8 {
+  border-radius: 8px;
+}
+
 .border-r20 {
   border-radius: 20px;
+}
+.box-shadow {
+  box-shadow: 0 2.5px 5.4px rgba(0, 0, 0, 0.028), 0 8.5px 18.1px rgba(0, 0, 0, 0.042), 0 38px 81px rgba(0, 0, 0, 0.07);
 }
