@@ -1,6 +1,6 @@
 import { endTime, startTime } from "./getTimeFromLessons";
 
-const BEGIN_CALENDAR = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:KMA Schedule (kma.namee.site)\r\nMETHOD:PUBLISH\r\nCALSCALE:GREGORIAN\r\n";
+const BEGIN_CALENDAR = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:KMA Schedule (kma.nne.me)\r\nMETHOD:PUBLISH\r\nCALSCALE:GREGORIAN\r\n";
 const END_CALENDAR = "END:VCALENDAR"
 
 
